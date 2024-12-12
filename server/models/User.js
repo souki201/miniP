@@ -11,6 +11,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  expoPushToken:{
+    type:String
+  }
 });
 
 const User = mongoose.model('User', userSchema);

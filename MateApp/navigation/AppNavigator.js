@@ -73,16 +73,16 @@ const AppNavigator = () => {
         {isLoggedIn ? (
           <Stack.Screen
             name="Tabs"
-            component={() => (
-              <SafeAreaView
-                style={{
-                  flex: 1,
-                  backgroundColor: isDarkMode ? '#1c1c1c' : '#ffffff',
-                }}
-              >
-                {renderTabs()}
-              </SafeAreaView>
-            )}
+            component={
+            //   <SafeAreaView
+            //     style={{
+            //       flex: 1,
+            //       backgroundColor: isDarkMode ? '#1c1c1c' : '#ffffff',
+            //     }}
+            //   >
+                renderTabs
+            //   </SafeAreaView>
+            }
             options={{
               headerShown: false,
             }}

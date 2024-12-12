@@ -4,23 +4,28 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const useAuthStore = create((set) => ({
   // Authentication state
   isLoggedIn: false,
+  token: null,
+  userId: null,
 
   // Check login status
   checkLoginStatus: async () => {
     const token = await AsyncStorage.getItem('authToken');
-    set({ isLoggedIn: !!token }); // Set to true if token exists
+    const userId = await AsyncStorage.getItem('userId');
+    set({ isLoggedIn: !!token, token, userId }); // Set to true if token exists
   },
 
   // Login method
-  login: async (token) => {
+  login: async (token, userId) => {
     await AsyncStorage.setItem('authToken', token);
-    set({ isLoggedIn: true });
+    await AsyncStorage.setItem('userId', userId);
+    set({ isLoggedIn: true, token, userId });
   },
 
   // Logout method
   logout: async () => {
     await AsyncStorage.removeItem('authToken');
-    set({ isLoggedIn: false });
+    await AsyncStorage.removeItem('userId');
+    set({ isLoggedIn: false, token: null, userId: null });
   },
 }));
 
